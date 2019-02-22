@@ -90,9 +90,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-        'rrpp' => [
+        'rrpps' => [
             'driver' => 'eloquent',
-            'model' => App\Rrpps::class,
+            'model' => App\Rrpp::class,
         ],
 
     ],

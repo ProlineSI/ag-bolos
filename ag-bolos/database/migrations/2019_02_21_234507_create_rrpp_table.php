@@ -13,9 +13,13 @@ class CreateRrppTable extends Migration
      */
     public function up()
     {
-        Schema::create('rrpp', function (Blueprint $table) {
+        Schema::create('rrpps', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('cellphone');
             $table->timestamps();
+
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_rrpp')->default(false);
@@ -30,6 +34,6 @@ class CreateRrppTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rrpp');
+        Schema::dropIfExists('rrpps');
     }
 }

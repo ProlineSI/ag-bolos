@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -44,7 +46,7 @@ class LoginController extends Controller
 
     public function showClientLoginForm()
     {
-        return view('auth.login', ['url' => 'admin']);
+        return view('auth.login', ['url' => 'client']);
     }
 
     public function clientLogin(Request $request)

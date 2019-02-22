@@ -1,4 +1,3 @@
-// resources/views/home.blade.php
 
 @extends('layouts.auth')
 
@@ -10,7 +9,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                     Hi there, regular user
+                    Hi there, awesome rrpp
                 </div>
             </div>
         </div>

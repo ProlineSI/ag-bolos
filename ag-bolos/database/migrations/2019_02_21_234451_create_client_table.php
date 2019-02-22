@@ -21,15 +21,15 @@ class CreateClientTable extends Migration
             $table->string('cellphone');
         });
 
-        Schema::create('client', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_client')->default(false);
             $table->rememberToken();
-            $table->unsignedInteger('id_profile');
-            $table->foreign('id_profile')->references('id')->on('client_profile');
+            $table->unsignedInteger('profile_id');
+            $table->foreign('profile_id')->references('id')->on('client_profile');
         });
     }
 
@@ -40,6 +40,6 @@ class CreateClientTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client');
+        Schema::dropIfExists('clients');
     }
 }

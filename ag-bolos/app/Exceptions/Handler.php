@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -12,11 +14,8 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
-        //
-    ];
-
-    /**
+    protected $dontReport = [];
+    /*
      * A list of the inputs that are never flashed for validation exceptions.
      *
      * @var array
@@ -47,5 +46,21 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if ($request->is('admin') || $request->is('admin/*')) {
+            return redirect()->guest('/login/admin');
+        }
+        if ($request->is('client') || $request->is('client/*')) {
+            return redirect()->guest('/login/client');
+        }
+        if ($request->is('rrpp') || $request->is('rrpp/*')) {
+            return redirect()->guest('/login/rrpp');
+        }
+        return redirect()->guest(route('login'));
     }
 }
